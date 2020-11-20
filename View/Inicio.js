@@ -1,15 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, ActivityIndicator, RefreshControl } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity } from 'react-native'
 import { useEffect, useState } from 'react'
 import { Svg } from 'react-native-svg'
 import Image from 'react-native-remote-svg'
 import axios from 'axios'
 
+
 export default function Inicio() {
+
     const [ultimaActualizacion, setUltimaActualizacion] = useState('')
     const [casosConfirmados, setCasosConfirmados] = useState(0)
     const [muertes, setMuertes] = useState(0)
-    const [recuperados, setRecuperados] = useState(0)
+    const [PersonasRecuperadas, setRecuperados] = useState(0)
     const [casosActivos, setCasosActivos] = useState(0)
     const [loading, setLoading] = useState(true)
     const [networkError, setNetworkError] = useState(false)
@@ -17,8 +19,7 @@ export default function Inicio() {
     useEffect(() => {
         obtenerDatos()
         obtenerUltimaActualizacion()
-        setTimeout(function(){ setLoading(false) }, 1000);
-
+        setTimeout(function () { setLoading(false) }, 3000);
     }, []);
 
     const wait = (timeout) => {
@@ -58,10 +59,17 @@ export default function Inicio() {
 
     if (networkError) {
         return (
-            <View style={styles.loader} refreshControl={
-                <RefreshControl refreshing={loading} onRefresh={onRefresh} />
-            }>
+            <View style={styles.loader}>
                 <Text>No hay conexión de internet</Text>
+                <Svg width="65" height="65">
+                    <Image source={require('../assets/no-wifi.svg')} />
+                </Svg>
+                <TouchableOpacity
+                    style={styles.botonError}
+                    onPress={onRefresh}
+                >
+                    <Text>Presiona para reintentar</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -74,6 +82,14 @@ export default function Inicio() {
         )
     }
 
+    const limpiarDatos = () => {
+        setCasosConfirmados(0)
+        setCasosActivos(0)
+        setMuertes(0)
+        setRecuperados(1)
+        setLoading(true)
+        setUltimaActualizacion('')
+    }
 
     return (
         <ScrollView style={{ backgroundColor: '#fff' }} refreshControl={
@@ -88,9 +104,7 @@ export default function Inicio() {
                 <Text style={styles.styleTextTituloConfirmar}>Casos Confirmados</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <View>
-                        <Svg width="55" height="55">
-                            <Image source={require('../assets/confirmados.svg')} />
-                        </Svg>
+                        <Image source={require('../assets/confirmados.svg')} />
                     </View>
                     <View>
                         <Text style={styles.styleText}>{casosConfirmados}</Text>
@@ -101,9 +115,7 @@ export default function Inicio() {
                 <Text style={styles.styleTextTituloMuertes}>Defunciones</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <View>
-                        <Svg width="55" height="55">
-                            <Image source={require('../assets/fallecidos.svg')} />
-                        </Svg>
+                        <Image source={require('../assets/fallecidos.svg')} />
                     </View>
                     <View>
                         <Text style={styles.styleText}>{muertes}</Text>
@@ -114,12 +126,10 @@ export default function Inicio() {
                 <Text style={styles.styleTextTituloRecuperados}>Recuperados</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <View>
-                        <Svg width="55" height="55">
-                            <Image source={require('../assets/recuperados.svg')} />
-                        </Svg>
+                        <Image source={require('../assets/recuperados.svg')} />
                     </View>
                     <View>
-                        <Text style={styles.styleText}>{recuperados}</Text>
+                        <Text style={styles.styleText}>{PersonasRecuperadas}</Text>
                     </View>
                 </View>
             </View>
@@ -127,9 +137,7 @@ export default function Inicio() {
                 <Text style={styles.styleTextTituloActivos}>Casos activos</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <View>
-                        <Svg width="55" height="55">
-                            <Image source={require('../assets/coronavirus.svg')} />
-                        </Svg>
+                        <Image source={require('../assets/coronavirus.svg')} />
                     </View>
                     <View>
                         <Text style={styles.styleText}>{casosActivos}</Text>
@@ -208,7 +216,7 @@ const styles = StyleSheet.create({
     botonError: {
         fontSize: 23,
         color: '#000',
-        padding: 30,
+        padding: 10,
         marginLeft: 9,
         marginTop: 15,
         marginRight: 9,

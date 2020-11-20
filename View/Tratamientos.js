@@ -1,12 +1,64 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { Svg } from 'react-native-svg'
+import Image from 'react-native-remote-svg'
 
 const tratamientos = () => {
 
-    return(
-        <View style={styles.container}>
-            <Text style={styles.styleText}>Tratamientos</Text>
-        </View>
+    return (
+        <ScrollView style={{ backgroundColor: '#fff' }}>
+            <View style={styles.container}>
+                <Text style={{ color: '#995444', textAlign: 'center', fontSize: 15, fontWeight: 'bold' }}>¿Cómo tratar el Covid 19?</Text>
+            </View>
+            <View style={styles.container}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                    <Image source={require('../assets/resting.svg')} />
+                </View>
+                <View>
+                    <Text style={styles.styleText}>Descansar</Text>
+                </View>
+            </View>
+            <View style={styles.container}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                    <Image source={require('../assets/beberAgua.svg')} />
+                </View>
+                <View>
+                    <Text style={styles.styleText}>Beber mucho líquido</Text>
+                </View>
+            </View>
+            <View style={styles.container}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                    <Image source={require('../assets/cena.svg')} />
+                </View>
+                <View>
+                    <Text style={styles.styleText}>Comer alimentos nutritivos</Text>
+                </View>
+            </View>
+            <View style={styles.container}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                    <Image source={require('../assets/cama.svg')} />
+                </View>
+                <View>
+                    <Text style={styles.styleText}>Permanezca en una habitación separada de los demás miembros de la familia.</Text>
+                </View>
+            </View>
+            <View style={styles.container}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                    <Image source={require('../assets/nadador.svg')} />
+                </View>
+                <View>
+                    <Text style={styles.styleText}>Utilice un baño exclusivamente para usted si es posible</Text>
+                </View>
+            </View>
+            <View style={styles.container}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                    <Image source={require('../assets/limpiar2.svg')} />
+                </View>
+                <View>
+                    <Text style={styles.styleText}>Limpie y desinfecte frecuentemente las superficies que toque</Text>
+                </View>
+            </View>
+        </ScrollView>
     )
 }
 
@@ -23,7 +75,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     styleText: {
-        color: '#000',
+        color: '#995444',
         textAlign: 'center'
     }
 });
+
