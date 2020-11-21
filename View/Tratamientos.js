@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import { Svg } from 'react-native-svg'
 import Image from 'react-native-remote-svg'
 
 const tratamientos = () => {
@@ -8,7 +7,7 @@ const tratamientos = () => {
     return (
         <ScrollView style={{ backgroundColor: '#fff' }}>
             <View style={styles.container}>
-                <Text style={{ color: '#995444', textAlign: 'center', fontSize: 15, fontWeight: 'bold' }}>¿Cómo tratar el Covid 19?</Text>
+                <Text style={{ padding: 10, color: '#FD425F', fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>¿Cómo tratar el Covid 19?</Text>
             </View>
             <View style={styles.container}>
                 <View style={{ alignItems: 'center', justifyContent: 'center', }}>
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     styleText: {
-        color: '#995444',
+        color: '#000',
         textAlign: 'center'
     }
 });

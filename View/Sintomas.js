@@ -5,7 +5,7 @@ const Sintomas = () => {
     return(
         <ScrollView style={{ backgroundColor: '#fff' }}>
             <View style={styles.container}> 
-                <Text style={{fontSize: 15,fontWeight: 'bold',color: '#995444', textAlign: 'center'}}>Síntomas</Text>
+                <Text style={{ padding: 10, color: '#FD425F', fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Síntomas</Text>
             </View>
             <View style={styles.container}> 
                 <Text style={styles.styleText}>Los síntomas más habituales son los siguientes</Text>
@@ -54,14 +54,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     styleText: {
-        color: '#995444',
-        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#000',
+        
     },
     styleTextList: {
         marginLeft: 5,
-        marginTop:4,
+        marginTop:5,
         marginBottom:0,
-        paddingLeft: 8,
+        paddingLeft: 10,
         paddingTop: 5,
         backgroundColor: 'rgba(120, 120, 120, 0.1)',
         borderRadius: 10
